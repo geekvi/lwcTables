@@ -1,0 +1,52 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-16-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-16-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-card title="LWC Table">
+        <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+        <lightning-button
+            label={toggleSaveLabel}
+            icon-name="utility:save"
+            slot="actions"
+            onclick={handleSave}>
+        </lightning-button>
+        <lightning-button
+            label="Cancel"
+            icon-name="utility:cancel"
+            slot="actions"
+            onclick={handleCancel}>
+        </lightning-button>
+
+    <div class="slds-p-around_x-small">
+        <template if:true={listView.data}>
+        <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+            <thead>
+                <tr data-id="name1" class="slds-line-height_reset">
+                    <template for:each={fields} for:item="field">
+                        <th class="slds-size_3-of-10" scope="col" key={field.fieldName}>
+                            <div class="slds-truncate" title={field.label}>{field.label}</div>
+                        </th>
+                    </template>
+                    <th class="slds-size_1-of-10" scope="col">
+                        <div class="slds-truncate" title="Action">Action</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            <template for:each={contacts} for:item="row">
+                <c-test-child-row record={row} key={row.Id} isedited={isEditedP} onclick={onDoubleClickEdit} >
+                </c-test-child-row>
+            </template>
+            </tbody>
+        </table>
+        </template>
+    </div>
+    </lightning-card>
+</template>

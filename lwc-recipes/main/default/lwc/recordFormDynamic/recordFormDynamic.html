@@ -1,0 +1,44 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-14-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-14-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-record-view-form
+        object-api-name={objectApiName}
+        record-id={recordId}
+        >
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-8">
+                <lightning-output-field variant="label-hidden"
+                    field-name="AccountId"
+                ></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-8">
+                <lightning-output-field variant="label-hidden"
+                    field-name="Name"
+                ></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-8">
+                <lightning-output-field variant="label-hidden"
+                    field-name="Title"
+                ></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-8">
+                <lightning-output-field variant="label-hidden"
+                    field-name="Phone"
+                ></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-8">
+                <lightning-output-field variant="label-hidden"
+                    field-name="Email"
+                ></lightning-output-field>
+            </div>
+        </div>
+    </lightning-record-view-form>
+</template>

@@ -1,0 +1,44 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-16-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-14-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-card title="WireListView" icon-name="custom:custom67">
+        <template if:true={listView.data}>
+            <div class="slds-m-around_medium">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                            <template for:each={fields} for:item="field">
+                                <th class="slds-size_3-of-10" scope="col" key={field}>
+                                    <div class="slds-truncate" title={field}>{field}</div>
+                                </th>
+                            </template>
+                            <th class="slds-size_1-of-10" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                        <template for:each={contacts} for:item="contact">
+                            <c-record-form-dynamic
+                                key={contact.fields.Id.value}
+                                record-id={contact.fields.Id.value}
+                                object-api-name='Contact'
+                                fields={fields}>
+                            </c-record-form-dynamic>
+                        </template>
+
+                </table>
+            </div>
+        </template>
+        <template if:true={listView.error}>
+            <c-error-panel errors={listView.error}></c-error-panel>
+        </template>
+    </lightning-card>
+</template>

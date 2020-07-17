@@ -1,0 +1,70 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-15-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-14-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-card title="Sign and Symptoms List" icon-name="standard:account">
+        <div class="slds-p-around_x-small">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="">
+                        <template for:each={fields} for:item="field">
+                            <th class="slds-size_3-of-10" scope="col" key={field}>
+                                <div class="slds-truncate" title={field}>{field}</div>
+                            </th>
+                        </template>
+                        <th class="slds-size_1-of-10" scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--template for:each={signrecs.data} for:item="acc">
+                        <tr key={acc.Name} class="slds-hint-parent">
+                            <td data-label="Prospecting">
+                                <div class="slds-truncate" title="Account Name">{acc.Name}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="Industry">{acc.UAC_signSymptom__c}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="Phone">{acc.UAC_locationofPain__c}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="Edit">
+                                    <a name={acc.Id} onclick={handleClick}>
+                                        <lightning-icon icon-name="action:edit" size="x-small"></lightning-icon>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </template-->
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+    <template if:true={open}>
+        <div style="height: 640px;">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                        <lightning-icon icon-name="utility:close" title="close" size="small" onclick={closeModal} variant="inverse"></lightning-icon>
+                    </button>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <!--c-update-rec record-id={rec2Id} oncreate={reloadList}></c-update-rec-->
+                        <c-record-form-dynamic1 record-id={rec2Id}  object-api-name='Account' oncreate={reloadList}></c-record-form-dynamic1>
+                </div>
+            </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </template>
+</template>

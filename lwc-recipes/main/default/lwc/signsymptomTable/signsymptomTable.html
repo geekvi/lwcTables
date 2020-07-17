@@ -1,0 +1,50 @@
+<!--
+  @File Name          : lwcCustomTable.html
+  @Description        :
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              :
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 07-16-2020
+  @Modification Log   :
+  Ver       Date            Author      		    Modification
+  1.0    7/9/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    <lightning-card title="LWC Table">
+            <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+            <lightning-button
+                label={toggleSaveLabel}
+                icon-name="utility:save"
+                slot="actions"
+                onclick={handleSave}>
+            </lightning-button>
+            <lightning-button
+                label="Cancel"
+                icon-name="utility:cancel"
+                slot="actions"
+                onclick={handleCancel}>
+            </lightning-button>
+
+        <div class="slds-p-around_x-small">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr data-id="name1" class="slds-line-height_reset">
+                            <template for:each={fields} for:item="field">
+                                <th class="slds-size_3-of-10" scope="col" key={field.fieldName}>
+                                    <div class="slds-truncate" title={field.fieldName}>{field.label}</div>
+                                </th>
+                            </template>
+                            <th class="slds-size_1-of-10" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    <template for:each = {myList} for:item = "item" for:index="indexVar">
+                        <c-signsymptoms-child index-variable={indexVar} key={item.Id} record={item} onrecordchange={handleChange} onsendindex={getIndex} ></c-signsymptoms-child>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+</lightning-card>
+</template>

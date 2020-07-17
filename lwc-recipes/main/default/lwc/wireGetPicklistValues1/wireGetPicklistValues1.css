@@ -1,0 +1,6 @@
+.scroller {
+    height: 200px;
+    overflow: visible;
+    padding: 8px;
+    border: solid 1px #eee;
+}

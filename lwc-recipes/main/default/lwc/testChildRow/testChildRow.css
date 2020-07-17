@@ -1,0 +1,11 @@
+:host {
+    display: table-row;
+}
+.slds-modal__content{
+    overflow: visible;
+}
+td {
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

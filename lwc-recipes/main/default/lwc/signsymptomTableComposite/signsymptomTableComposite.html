@@ -1,0 +1,121 @@
+<!--
+  @File Name          : lwcCustomTable.html
+  @Description        :
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              :
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 07-16-2020
+  @Modification Log   :
+  Ver       Date            Author      		    Modification
+  1.0    7/9/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    <lightning-card title="LWC Table">
+            <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+            <lightning-button
+                label={toggleSaveLabel}
+                icon-name="utility:save"
+                slot="actions"
+                onclick={handleSave}>
+            </lightning-button>
+            <lightning-button
+                label="Cancel"
+                icon-name="utility:cancel"
+                slot="actions"
+                onclick={handleCancel}>
+            </lightning-button>
+
+        <div class="slds-p-around_x-small">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="">
+                            <template for:each={fields} for:item="field">
+                                <th class="slds-size_3-of-10" scope="col" key={field.fieldName}>
+                                    <div class="slds-truncate" title={field.fieldName}>{field.label}</div>
+                                </th>
+                            </template>
+                            <th class="slds-size_1-of-10" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    <template for:each = {myList} for:item = "item" for:index="indexVar">
+                        <tr key={item.Id} class="slds-hint-parent" ondblclick={onDoubleClickEdit}>
+                        <td class="slds-size_3-of-10" data-label="Prospecting">
+                            <div  title="Prospecting">
+                                <template if:false={isEdited}>{item.UAC_signSymptom__c}</template>
+                                <template if:true={isEdited}>
+                                    <c-pick-list
+                                        unique-key={item.Id}
+                                        object-api-name={objectApiName}
+                                        selected-value={item.UAC_signSymptom__c}
+                                        pick-listfield-api-name="UAC_signSymptom__c"
+                                        variant="label-hidden"
+                                        onpicklistchange={handlePicklistChange}>
+                                    </c-pick-list>
+                                </template>
+                            </div>
+                        </td>
+                        <td class="slds-size_3-of-10" data-label="Prospecting">
+                            <div  title="Prospecting">
+                                <template if:false={isEdited}>
+                                    <lightning-formatted-date-time value={item.UAC_signSymptomOnsetDate__c} year="2-digit" month="short" day="2-digit"></lightning-formatted-date-time>
+                                    <!--lightning-formatted-url value={item.Id} label={item.Name} target="_self" ></lightning-formatted-url-->
+                                   </template>
+                                <template if:true={isEdited}>
+                                    <lightning-input key={item.key} data-id={item.Id} type="date" name="input1" value={item.UAC_signSymptomOnsetDate__c} min="2010-01-01" max="2022-01-01" onchange={handleNameChange}></lightning-input>
+                                    <!--lightning-input key={item.key} data-id={item.Id} name="input1" label="Name" value={item.Name} variant="label-hidden" onchange={handleNameChange}></lightning-input-->
+                                </template>
+                            </div>
+                        </td>
+                        <td class="slds-size_3-of-10" data-label="Prospecting">
+                            <div  title="Prospecting">
+                                <template if:false={isEdited}>
+                                    <lightning-formatted-text value={item.UAC_locationofPain__c} ></lightning-formatted-text>
+                                    <!--lightning-formatted-url value={item.Id} label={item.Name} target="_self" ></lightning-formatted-url-->
+                                   </template>
+                                <template if:true={isEdited}>
+                                    <lightning-input key={item.key} data-id={item.Id} name="input1" value={item.UAC_locationofPain__c} variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                                </template>
+                            </div>
+                        </td>
+                        <td class="slds-size_3-of-10" data-label="Prospecting">
+                            <div title="Prospecting">
+                                <template if:false={isEdited}>{item.UAC_measurementInUnits__c}</template>
+                                <template if:true={isEdited}>
+                                    <c-dependent-pick-list4
+                                        unique-key={item.Id}
+                                        object-api-name={objectApiName}
+                                        pick-listfield-api-name="UAC_measurementInUnits__c"
+                                        controlling-field-value={item.Type}
+                                        selected-value={item.UAC_measurementInUnits__c}
+                                        variant="label-hidden"
+                                        onpicklistchange={handleDependentPicklistChange}>
+                                    </c-dependent-pick-list4>
+                                </template>
+                            </div>
+                        </td>
+                        <td class="slds-size_3-of-10" data-label="Prospecting">
+                            <div  title="Prospecting">
+                                <template if:false={isEdited} if:true={item.UAC_measuredTemperature__c}>
+                                    <lightning-formatted-number value={item.UAC_measuredTemperature__c} ></lightning-formatted-number>
+                                    <!--lightning-output-field field-name={item.OperatingHours}></lightning-output-field-->
+                                </template>
+                                <template if:true={isEdited}>
+                                    <lightning-input type="number" name="input8" value={item.UAC_measuredTemperature__c} min=30 max="130" step=0.1></lightning-input>
+                                </template>
+                            </div>
+                        </td>
+                        <td class="slds-size_1-of-10" data-label="Prospecting">
+                            <a name={indexVar} data-id={item.Id} onclick={remove}>
+                                    <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
+                            </a>
+                        </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+</lightning-card>
+</template>

@@ -1,0 +1,22 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-17-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-17-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-combobox
+        id="pickList"
+        name="progress"
+        label={label}
+        value={value}
+        variant={variant}
+        placeholder="Select"
+        options={picklistValues.data.values}
+        onchange={handleChange}>
+    </lightning-combobox>
+</template>

@@ -1,0 +1,77 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-14-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-14-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-card title="WireListView" icon-name="custom:custom67">
+        <template if:true={listView.data}>
+            <div class="slds-m-around_medium">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr class="">
+                            <template for:each={fields} for:item="field">
+                                <th class="slds-size_3-of-10" scope="col" key={field}>
+                                    <div class="slds-truncate" title={field}>{field}</div>
+                                </th>
+                            </template>
+                            <th class="slds-size_1-of-10" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={contacts} for:item="contact">
+                            <tr key={contact.fields.Id.value} class="slds-hint-parent" ondblclick={onDoubleClickEdit}>
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    <div  title="Prospecting">
+                                        <template if:false={isEdited}>
+                                            <lightning-formatted-url value={contact.fields.recordUrl} label={contact.fields.Name} target="_self" ></lightning-formatted-url>
+                                        </template>
+                                        <template if:true={isEdited}>
+                                            <lightning-input key={contact.fields.Id.value} data-id={contact.fields.Id.value} name="Name" label="Name" value={contact.fields.Name} variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                                        </template>
+                                    </div>
+                                </td>
+                                <!--td class="slds-size_3-of-10" data-label="Prospecting">
+                                    <div  title="Prospecting">
+                                        <template if:false={isEdited}>{contact.Title}</template>
+                                        <template if:true={isEdited}>
+                                            <c-pick-list
+                                                unique-key={contact.Id}
+                                                object-api-name={CONTACT_OBJECT}
+                                                selected-value={contact.Title}
+                                                pick-listfield-api-name="Salutation"
+                                                variant="label-hidden"
+                                                onpicklistchange={handlePicklistChange}>
+                                            </c-pick-list>
+                                        </template>
+                                    </div>
+                                </td-->
+
+                                <td class="slds-size_3-of-10" data-label="Prospecting">
+                                    <div  title="Prospecting">
+
+                                    </div>
+                                </td>
+                                <td class="slds-size_1-of-10" data-label="Prospecting">
+                                    <a name={indexVar} data-id={item.Id} onclick={remove}>
+                                            <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+        <template if:true={listView.error}>
+            <c-error-panel errors={listView.error}></c-error-panel>
+        </template>
+    </lightning-card>
+</template>

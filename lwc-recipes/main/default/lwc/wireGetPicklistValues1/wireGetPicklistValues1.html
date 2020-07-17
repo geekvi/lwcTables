@@ -1,0 +1,28 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-17-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-17-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+        <template if:true={picklistValues.data}>
+                <div class="slds-m-around_medium">
+                <lightning-combobox
+                    id="pickList"
+                    name="progress"
+                    value={value}
+                    variant="label-hidden"
+                    placeholder="Select"
+                    options={values}
+                    onchange={handleChange}>
+                </lightning-combobox>
+                </div>
+        </template>
+        <template if:true={picklistValues.error}>
+            <c-error-panel errors={picklistValues.error}></c-error-panel>
+        </template>
+</template>

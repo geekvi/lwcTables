@@ -1,0 +1,92 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/accountListEdit": [
+                "accountListEdit/accountListEdit.js"
+            ],
+            "c/customDataTable": [
+                "customDataTable/customDataTable.js"
+            ],
+            "c/customDatatableDemo": [
+                "customDatatableDemo/customDatatableDemo.js"
+            ],
+            "c/datatablePicklist": [
+                "datatablePicklist/datatablePicklist.js"
+            ],
+            "c/listViewDynamic": [
+                "listViewDynamic/listViewDynamic.js"
+            ],
+            "c/listViewDynamicForm": [
+                "listViewDynamicForm/listViewDynamicForm.js"
+            ],
+            "c/lookupLwc": [
+                "lookupLwc/lookupLwc.js"
+            ],
+            "c/lwcCustomTable": [
+                "lwcCustomTable/lwcCustomTable.js"
+            ],
+            "c/lwcCustomTableList": [
+                "lwcCustomTableList/lwcCustomTableList.js"
+            ],
+            "c/recordFormDynamic": [
+                "recordFormDynamic/recordFormDynamic.js"
+            ],
+            "c/recordFormDynamic1": [
+                "recordFormDynamic1/recordFormDynamic1.js"
+            ],
+            "c/signssymptomsListEdit": [
+                "signssymptomsListEdit/signssymptomsListEdit.js"
+            ],
+            "c/testTable": [
+                "testTable/testTable.js"
+            ],
+            "c/testTableWithActions": [
+                "testTableWithActions/testTableWithActions.js"
+            ],
+            "c/updateRec": [
+                "../../../../uac-health/force-app/main/default/lwc/updateRec/updateRec.js"
+            ],
+            "c/picklist2": [
+                "../../../../uac-health/force-app/main/default/lwc/picklist2/picklist2.js"
+            ],
+            "c/dependentPickList4": [
+                "../../../../uac-health/force-app/main/default/lwc/dependentPickList4/dependentPickList4.js"
+            ],
+            "c/pickList": [
+                "pickList/pickList.js"
+            ],
+            "c/stencilLwc": [
+                "stencilLwc/stencilLwc.js"
+            ],
+            "c/signsymptomTable": [
+                "signsymptomTable/signsymptomTable.js"
+            ],
+            "c/signsymptomsChild": [
+                "signsymptomsChild/signsymptomsChild.js"
+            ],
+            "c/signsymptomTableComposite": [
+                "signsymptomTableComposite/signsymptomTableComposite.js"
+            ],
+            "c/testParentTable": [
+                "testParentTable/testParentTable.js"
+            ],
+            "c/testChildRow": [
+                "testChildRow/testChildRow.js"
+            ],
+            "c/wireGetPicklistValues1": [
+                "wireGetPicklistValues1/wireGetPicklistValues1.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

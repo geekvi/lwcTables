@@ -1,0 +1,25 @@
+<!--
+  @File Name          : testTableWithActions.html
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 7/8/2020, 4:36:47 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    7/8/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="Id"
+                data={tableData}
+                oncellchange={getSelectedName}
+                show-row-number-column
+                row-number-offset={rowOffset}
+                columns={columns}
+                draft-values={contacts}
+                onsave={handleChange}>
+        </lightning-datatable>
+    </div>
+</template>
