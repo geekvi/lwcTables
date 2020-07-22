@@ -2,30 +2,23 @@
   @description       :
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             :
-  @last modified on  : 07-16-2020
+  @last modified on  : 07-22-2020
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
   Modifications Log
   Ver   Date         Author                               Modification
   1.0   07-16-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
 -->
 <template>
-    <lightning-card title="LWC Table">
-        <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
-        <lightning-button
-            label={toggleSaveLabel}
-            icon-name="utility:save"
-            slot="actions"
-            onclick={handleSave}>
-        </lightning-button>
-        <lightning-button
-            label="Cancel"
-            icon-name="utility:cancel"
-            slot="actions"
-            onclick={handleCancel}>
-        </lightning-button>
-
-    <div class="slds-p-around_x-small">
-        <template if:true={listView.data}>
+    <lightning-card title="LWC Table" >
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-form-element slds-has-error">
+            <template if:true={error}>
+                    <p >{error}</p>
+            </template>
+            </div>
+        </div>
+    <div class="slds-p-around_x-small" >
+        <template if:true={contacts}>
         <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
             <thead>
                 <tr data-id="name1" class="slds-line-height_reset">
@@ -40,13 +33,39 @@
                 </tr>
             </thead>
             <tbody>
-            <template for:each={contacts} for:item="row">
-                <c-test-child-row record={row} key={row.Id} isedited={isEditedP} onclick={onDoubleClickEdit} >
+            <template for:each={contacts} for:item="row" for:index="indexVar">
+                <c-test-child-row   record={row}
+                                    key={row.Id}
+                                    rowindex={indexVar}
+                                    isedited={isEditedP}
+                                    ondblclick={onDoubleClickEdit}
+                                    onsignsympremove={remove}
+                                    onsignsympupdate={handleChange}
+                                    formstyle={formstyle}>
                 </c-test-child-row>
             </template>
             </tbody>
         </table>
         </template>
     </div>
+    <!--footer class="slds-card__footer">
+        <div class="slds-button-group" role="group"-->
+            <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+            <template if:true={isEditedP}>
+                <lightning-button
+                    label={toggleSaveLabel}
+                    icon-name="utility:save"
+                    slot="actions"
+                    onclick={handleSave}>
+                </lightning-button>
+                <lightning-button
+                    label="Cancel"
+                    icon-name="utility:cancel"
+                    slot="actions"
+                    onclick={handleCancel}>
+                </lightning-button>
+            </template>
+        <!--/div>
+    </footer-->
     </lightning-card>
 </template>

@@ -2,7 +2,7 @@
   @description       :
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             :
-  @last modified on  : 07-17-2020
+  @last modified on  : 07-22-2020
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
   Modifications Log
   Ver   Date         Author                               Modification
@@ -10,14 +10,16 @@
 -->
 <template>
     <!-- taken straight from SLDS -->
-    <th data-label="Name" scope="row" >
-        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" title="Name">
+    <th data-label="Name" scope="row" class={formstyle}>
+        <div class="slds-combobox" title="Name">
             <template if:false={isedited}>{row.fields.UAC_signSymptom__c.value}</template>
             <template if:true={isedited}>
                 <c-wire-get-picklist-values1
+                onchange={handleOnChange}
                 unique-key={row.Id}
                 type='1'
                 value={row.fields.UAC_signSymptom__c.value}
+                required
                 ></c-wire-get-picklist-values1>
                 <!--c-pick-list
                     unique-key={row.Id}
@@ -34,10 +36,10 @@
     <td data-label="Some Custom Column" >
         <div class="slds-truncate">
             <template if:false={isedited}>
-                <lightning-formatted-date-time value={row.fields.UAC_signSymptomOnsetDate__c.value} year="2-digit" month="short" day="2-digit"></lightning-formatted-date-time>
+                <lightning-formatted-date-time variant="label-hidden" value={row.fields.UAC_signSymptomOnsetDate__c.value} year="2-digit" month="short" day="2-digit"></lightning-formatted-date-time>
             </template>
             <template if:true={isedited}>
-                <lightning-input key={row.key} data-id={row.Id} type="date" name="input1" value={row.fields.UAC_signSymptomOnsetDate__c.value} min="2010-01-01" max="2022-01-01" onchange={handleNameChange}></lightning-input>
+                <lightning-input variant="label-hidden" key={row.key} data-id={row.Id} type="date" name="input1" value={row.fields.UAC_signSymptomOnsetDate__c.value} min="2010-01-01" max="2022-01-01" onchange={handleNameChange}></lightning-input>
             </template>
         </div>
     </td>
@@ -47,7 +49,7 @@
                 <lightning-formatted-text value={row.fields.UAC_locationofPain__c.value} ></lightning-formatted-text>
             </template>
             <template if:true={editpain}>
-                <lightning-input key={row.key} data-id={row.Id} name="input1" value={row.fields.UAC_locationofPain__c.value} variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                <lightning-input variant="label-hidden" required key={row.key} data-id={row.Id} name="input1" value={row.fields.UAC_locationofPain__c.value} onchange={handleNameChange}></lightning-input>
             </template>
         </div>
     </td>
@@ -57,7 +59,7 @@
                 <lightning-formatted-text value={row.fields.UAC_specifyOtherSignSymptom__c.value} ></lightning-formatted-text>
             </template>
             <template if:true={editother}>
-                <lightning-input key={row.key} data-id={row.Id} name="input1" value={row.fields.UAC_specifyOtherSignSymptom__c.value} variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                <lightning-input variant="label-hidden" required key={row.key} data-id={row.Id} name="input1" value={row.fields.UAC_specifyOtherSignSymptom__c.value} onchange={handleNameChange}></lightning-input>
             </template>
         </div>
     </td>
@@ -69,6 +71,7 @@
                 unique-key={row.Id}
                 type='2'
                 value={row.fields.UAC_measurementInUnits__c.value}
+                required
                 ></c-wire-get-picklist-values1>
                 <!--c-dependent-pick-list4
                     unique-key={row.Id}
@@ -89,7 +92,7 @@
                     <lightning-formatted-number value={row.fields.UAC_measuredTemperature__c.value} ></lightning-formatted-number>
                 </template>
                 <template if:true={edittemp} >
-                    <lightning-input type="number" name="input8" value={row.fields.UAC_measuredTemperature__c.value} min=30 max="130" step=0.1></lightning-input>
+                    <lightning-input variant="label-hidden" required type="number" name="input8" value={row.fields.UAC_measuredTemperature__c.value} min=30 max="130" step=0.1></lightning-input>
                 </template>
         </div>
     </td>
