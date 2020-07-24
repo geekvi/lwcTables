@@ -1,0 +1,39 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-24-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-24-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-card title="LWC Table" >
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-form-element slds-has-error">
+            <template if:true={error}>
+                    <p >{error}</p>
+            </template>
+            </div>
+        </div>
+    <div class="slds-p-around_x-small" >
+        <template if:true={contacts}>
+            <div style="height: 300px;">
+                <lightning-datatable
+                        key-field="Id"
+                        data={contacts}
+                        hide-number-column
+                        hide-checkbox-column
+                        oncellchange={getSelectedName}
+                        row-number-offset={rowOffset}
+                        columns={columns}
+                        draft-values={tableData}
+                        onrowaction={navigateToContact}
+                        onsave={handleChange}>
+                </lightning-datatable>
+            </div>
+            </template>
+    </div>
+    </lightning-card>
+</template>
