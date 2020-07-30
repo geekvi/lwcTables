@@ -1,0 +1,71 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-28-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-27-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-card title="Custom Table" >
+        <div class="slds-card__body slds-card__body_inner">
+            <template if:true={error}>
+            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">
+                    <p>{error}</p>
+            </div>
+            </template>
+        </div>
+    <div class="slds-p-around_x-small" >
+        <template if:true={contacts}>
+        <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+            <thead>
+                <tr data-id="name1" class="slds-line-height_reset">
+                    <template for:each={fields} for:item="field">
+                        <th class="slds-size_3-of-10" scope="col" key={field.fieldName}>
+                            <div class="slds-truncate" title={field.label}>{field.label}</div>
+                        </th>
+                    </template>
+                    <th class="slds-size_1-of-10" scope="col">
+                        <div class="slds-truncate" title="Action">Action</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            <template for:each={contacts} for:item="row" for:index="indexVar">
+                <c-lwc-custom-table-row   record={row}
+                                    key={row.Id}
+                                    rowindex={indexVar}
+                                    isedited={isEditedP}
+                                    ondblclick={onDoubleClickEdit}
+                                    onsignsympremove={remove}
+                                    onsignsympupdate={handleChange}
+                                    formstyle={formstyle}>
+                </c-lwc-custom-table-row>
+            </template>
+            </tbody>
+        </table>
+        </template>
+    </div>
+    <!--footer class="slds-card__footer">
+        <div class="slds-button-group" role="group"-->
+            <lightning-button-icon icon-name="utility:add" slot="actions" onclick={add}></lightning-button-icon>
+            <template if:true={isEditedP}>
+                <lightning-button
+                    label={toggleSaveLabel}
+                    icon-name="utility:save"
+                    slot="actions"
+                    onclick={handleSave}>
+                </lightning-button>
+                <lightning-button
+                    label="Cancel"
+                    icon-name="utility:cancel"
+                    slot="actions"
+                    onclick={handleCancel}>
+                </lightning-button>
+            </template>
+        <!--/div>
+    </footer-->
+    </lightning-card>
+</template>

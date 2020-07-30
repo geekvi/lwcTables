@@ -1,0 +1,105 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 07-28-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   07-16-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <!-- taken straight from SLDS -->
+    <th data-label="Name" scope="row" class={formstyle}>
+        <div class="slds-combobox" title="Name">
+            <template if:false={isedited}>{row.UAC_signSymptom__c}</template>
+            <template if:true={isedited}>
+                <c-wire-get-picklist-values1
+                onchange={handleOnChange}
+                unique-key={row.Id}
+                type='1'
+                value={row.UAC_signSymptom__c}
+                fieldapinamevalue={ObjectFieldName}
+                required
+                ></c-wire-get-picklist-values1>
+                <!--c-pick-list
+                    unique-key={row.Id}
+                    object-api-name={objectApiName}
+                    record-type-id={record.recordTypeId}
+                    selected-value={row.UAC_signSymptom__c}
+                    pick-listfield-api-name="UAC_signSymptom__c"
+                    variant="label-hidden"
+                    onpicklistchange={handleOnChange}>
+                </c-pick-list-->
+            </template>
+        </div>
+    </th>
+    <td data-label="Some Custom Column" >
+        <div class="slds-truncate">
+            <template if:false={isedited}>
+                <lightning-formatted-date-time variant="label-hidden" value={row.UAC_signSymptomOnsetDate__c} year="2-digit" month="short" day="2-digit"></lightning-formatted-date-time>
+            </template>
+            <template if:true={isedited}>
+                <lightning-input variant="label-hidden" key={row.key} data-id={row.Id} type="date" name="input1" value={row.UAC_signSymptomOnsetDate__c} min="2010-01-01" max="2022-01-01" ></lightning-input>
+            </template>
+        </div>
+    </td>
+    <td data-label="">
+        <div class="slds-truncate">
+            <template if:false={editpain}>
+                <lightning-formatted-text value={row.UAC_locationofPain__c} ></lightning-formatted-text>
+            </template>
+            <template if:true={editpain}>
+                <lightning-input variant="label-hidden" required key={row.key} data-id={row.Id} name="input1" value={row.UAC_locationofPain__c} ></lightning-input>
+            </template>
+        </div>
+    </td>
+    <td data-label="">
+        <div class="slds-truncate">
+            <template if:false={editother}>
+                <lightning-formatted-text value={row.UAC_specifyOtherSignSymptom__c} ></lightning-formatted-text>
+            </template>
+            <template if:true={editother}>
+                <lightning-input variant="label-hidden" required key={row.key} data-id={row.Id} name="input1" value={row.UAC_specifyOtherSignSymptom__c} ></lightning-input>
+            </template>
+        </div>
+    </td>
+    <td data-label="Some Custom Column">
+        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+            <template if:false={edittemp} if:true={row.UAC_measurementInUnits__c}>{row.UAC_measurementInUnits__c}</template>
+            <template if:true={edittemp} >
+                <c-wire-get-picklist-values1
+                unique-key={row.Id}
+                type='2'
+                value={row.UAC_measurementInUnits__c}
+                required
+                ></c-wire-get-picklist-values1>
+                <!--c-dependent-pick-list4
+                    unique-key={row.Id}
+                    object-api-name={objectApiName}
+                    record-type-id="0122F0000019ImBQAU"
+                    pick-listfield-api-name="UAC_measurementInUnits__c"
+                    controlling-field-value={row.fields.UAC_signSymptom__c.value}
+                    selected-value={row.fields.UAC_measurementInUnits__c.value}
+                    variant="label-hidden"
+                    onpicklistchange={handleDependentPicklistChange}>
+                </c-dependent-pick-list4-->
+            </template>
+        </div>
+    </td>
+    <td data-label="Some Custom Column">
+        <div class="slds-truncate">
+                <template if:false={edittemp} if:true={row.UAC_measuredTemperature__c}>
+                    <lightning-formatted-number value={row.UAC_measuredTemperature__c} ></lightning-formatted-number>
+                </template>
+                <template if:true={edittemp} >
+                    <lightning-input variant="label-hidden" required type="number" name="input8" value={row.UAC_measuredTemperature__c} min=30 max="130" step=0.1></lightning-input>
+                </template>
+        </div>
+    </td>
+    <td class="slds-size_1-of-10" data-label="Prospecting">
+            <a name={indexVar} data-id={row.Id} onclick={remove}>
+                    <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
+            </a>
+    </td>
+</template>
